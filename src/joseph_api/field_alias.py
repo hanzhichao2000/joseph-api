@@ -1,5 +1,7 @@
 """Canonical market data field names."""
 
+from typing import ClassVar
+
 
 class DataFieldAlias:
     """Standard field name constants for normalized data.
