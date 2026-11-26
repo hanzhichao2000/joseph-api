@@ -563,7 +563,7 @@ class InstrumentRegistry:
         # Try to find by exchange_symbol (exact match only)
         exchange_symbol_matches = []
 
-        for internal_symbol, instrument in self._registry.items():
+        for instrument in self._registry.values():
             if instrument.exchange_symbol == symbol:
                 exchange_symbol_matches.append(instrument)
 
@@ -719,7 +719,7 @@ def get_multiplier_strict(
             f"Register the instrument before running strict economic flows."
         )
     if not isinstance(instrument, Future):
-        raise ValueError(
+        raise TypeError(
             "Cannot get multiplier for "
             f"'{symbol}': expected Future, got {type(instrument).__name__}"
         )

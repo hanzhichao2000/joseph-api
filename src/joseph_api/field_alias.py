@@ -108,7 +108,7 @@ class DataFieldAlias:
     UNDERLYING_SYMBOL = "underlying_symbol"
 
     # All fields list
-    ALL_FIELDS = [
+    ALL_FIELDS: ClassVar[list[str]] = [
         TRADING_DATE,
         TIMESTAMP,
         EVENT_TS,
