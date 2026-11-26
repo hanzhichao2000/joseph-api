@@ -21,6 +21,8 @@ import re
 from collections.abc import Iterable
 from datetime import date
 
+from typing import Literal
+
 from pydantic import BaseModel, Field, model_validator
 
 from .enums import EXCHANGE_DEFAULT_CURRENCY, AssetType, Currency, Exchange
@@ -375,6 +377,10 @@ class Option(Instrument):
     strike: float = Field(gt=0, description="Strike price")
     expiry: date = Field(description="Expiry date")
     option_type: str = Field(description="Option type: 'call' or 'put'")
+    exercise_style: Literal["european", "american"] = Field(
+        default="european",
+        description="Exercise style; CFFEX index options are European, most commodity options American",
+    )
     commissions: dict[str, float] = Field(default_factory=dict)
     underlying_symbol: str = Field(description="Underlying symbol (e.g., IM2503)")
     multiplier: float = Field(gt=0, description="Contract multiplier")

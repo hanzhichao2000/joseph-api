@@ -10,4 +10,8 @@ capability, version, source, revision id, digest, receipt plus immutable relativ
 Does not hold: the DAL interface or preflight (joseph-dal), canonical JO order commands
 (joseph-mini), factor definitions (joseph-alpha), vendor field mappings (provider plugins).
 
+QuantLib: `Option` carries `exercise_style` (CFFEX index options are European) so it maps onto
+QuantLib instruments; conversion helpers, if wanted, live in an optional `joseph-api[quantlib]`
+extra and never in the core package.
+
 Public contracts: https://github.com/hanzhichao2000/joseph-docs-public

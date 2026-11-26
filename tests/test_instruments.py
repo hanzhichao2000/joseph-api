@@ -36,5 +36,5 @@ def test_option_and_registry():
         option_type="call",
         margin_rate=0.12,
     )
-    assert o.strike == 4000.0
+    assert o.strike == 4000.0 and o.exercise_style == "european"
     assert InstrumentRegistry() is not None
