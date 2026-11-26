@@ -20,7 +20,6 @@ Note:
 import re
 from collections.abc import Iterable
 from datetime import date
-
 from typing import Literal
 
 from pydantic import BaseModel, Field, model_validator
@@ -30,17 +29,17 @@ from .enums import EXCHANGE_DEFAULT_CURRENCY, AssetType, Currency, Exchange
 __test_case_metadata__ = {"defaults": {"components": ("models",), "domains": ("futures",)}}
 
 __all__ = [
-    "Instrument",
     "Future",
+    "Instrument",
+    "InstrumentRegistry",
     "Option",
     "Stock",
-    "InstrumentRegistry",
-    "normalize_exchange_symbol",
-    "normalize_symbol_case",
     "extract_product",
     "get_multiplier",
-    "get_multiplier_strict",
     "get_multiplier_fallback",
+    "get_multiplier_strict",
+    "normalize_exchange_symbol",
+    "normalize_symbol_case",
 ]
 
 
@@ -621,7 +620,7 @@ class InstrumentRegistry:
             def registry():
                 return InstrumentRegistry()  # Fresh instance per test
         """
-        pass  # No-op: singleton pattern removed
+        # No-op: singleton pattern removed
 
 
 def extract_product(symbol: str) -> str:

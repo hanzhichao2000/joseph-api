@@ -7,7 +7,7 @@ that store symbol in internal format.
 """
 
 import re
-from typing import Any
+from typing import Any, ClassVar
 
 from pydantic import computed_field, field_validator
 
@@ -146,7 +146,7 @@ class InternalSymbolMixin:
     Note: Must be listed BEFORE the Pydantic BaseModel in MRO.
     """
 
-    _COMPUTED_SYMBOL_FIELDS: set[str] = {"exchange", "exchange_symbol"}
+    _COMPUTED_SYMBOL_FIELDS: ClassVar[set[str]] = {"exchange", "exchange_symbol"}
 
     @field_validator("symbol")
     @classmethod

@@ -10,13 +10,13 @@ from joseph_api.revisions import RevisionFile, RevisionRecord, RevisionWindow
 from joseph_api.trading_calendar import TradingCalendar
 
 __all__ = [
+    "EXCHANGE_DEFAULT_CURRENCY",
     "AssetType",
     "Bar",
     "CostConfig",
     "Currency",
     "DataFieldAlias",
     "Exchange",
-    "EXCHANGE_DEFAULT_CURRENCY",
     "Fee",
     "Future",
     "Instrument",

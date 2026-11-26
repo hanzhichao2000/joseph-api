@@ -1,7 +1,7 @@
 import math
 from datetime import date, datetime
 
-from joseph_api import Bar, Fee, Margin, Settlement, Tick, Exchange
+from joseph_api import Bar, Exchange, Fee, Margin, Settlement, Tick
 
 
 def test_bar_missing_volume_is_nan():
