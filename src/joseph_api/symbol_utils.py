@@ -95,6 +95,34 @@ def format_internal_symbol(exchange: Exchange, exchange_symbol: str) -> str:
     return f"{exchange.value}.{exchange_symbol}"
 
 
+_LAKE_EXCHANGE_CODES: dict[str, Exchange] = {"CFE": Exchange.CFFEX}
+
+
+def exchange_from_code(code: str | Exchange) -> Exchange:
+    """Shared exchange for a source exchange code (the lake's ``CFE`` is the shared ``CFFEX``).
+
+    Raises:
+        ValueError: If the code is not a known exchange.
+
+    Examples:
+        >>> exchange_from_code("CFE")
+        <Exchange.CFFEX: 'CFFEX'>
+    """
+    if isinstance(code, Exchange):
+        return code
+    return _LAKE_EXCHANGE_CODES.get(code) or Exchange(code)
+
+
+def option_internal_symbol(exchange_code: str, exchange: str | Exchange = "CFE") -> str:
+    """Internal symbol of an option row: the shared exchange code plus the source's exchange code.
+
+    Examples:
+        >>> option_internal_symbol("HO2311-C-2125", "CFE")
+        'CFFEX.HO2311-C-2125'
+    """
+    return format_internal_symbol(exchange_from_code(exchange), exchange_code)
+
+
 def validate_symbol_contract(symbol: str) -> tuple[Exchange, str]:
     """Validate symbol is in canonical internal format and not malformed.
 
