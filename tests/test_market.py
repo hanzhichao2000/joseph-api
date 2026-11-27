@@ -36,3 +36,18 @@ def test_account_dtos_carry_provenance():
 def test_tick_nan_sides():
     t = Tick(symbol="IF2412", exchange=Exchange.CFFEX, ts=datetime(2024, 1, 2, 9, 30), last=1.0)
     assert math.isnan(t.bid) and math.isnan(t.ask)
+
+
+def test_bar_none_numeric_is_nan():
+    bar = Bar(
+        symbol="IF2412",
+        exchange=Exchange.CFFEX,
+        start=datetime(2024, 1, 2, 9, 30),
+        end=datetime(2024, 1, 2, 9, 35),
+        open=1.0,
+        high=2.0,
+        low=0.5,
+        close=1.5,
+        volume=None,
+    )
+    assert math.isnan(bar.volume)
