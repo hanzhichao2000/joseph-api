@@ -1,5 +1,5 @@
 dist/
 *.egg-info/
 __pycache__/
-.worktrees/
+# Put personal checkout exclusions in .git/info/exclude.
 .venv/

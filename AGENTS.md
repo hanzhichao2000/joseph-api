@@ -11,6 +11,7 @@ Run from the repository root with Python 3.11 or newer. The development checks m
 
 ```sh
 check_dir=$(mktemp -d)
+python3 tools/check_keywords.py keywords/public-boundary.txt .
 python3 -m venv "$check_dir/dev"
 "$check_dir/dev/bin/python" -m pip install -e '.[dev]'
 "$check_dir/dev/bin/ruff" check src tests
@@ -18,6 +19,14 @@ python3 -m venv "$check_dir/dev"
 "$check_dir/dev/bin/mypy"
 "$check_dir/dev/bin/pytest" -q
 ```
+
+The public keyword check runs offline with the checker and publishable wordlist
+maintained in this repository during rollout. When the public docs source lands,
+record its exact revision before syncing the two files.
+
+Run the checker from a clean checkout to reproduce CI. It reads paths from the
+Git index and content from the working tree. A run with local changes cannot
+verify the staged snapshot.
 
 Build the wheel from the checkout and verify it in a separate, fresh environment.
 Run the import check outside the source tree.
