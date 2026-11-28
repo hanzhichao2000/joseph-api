@@ -11,6 +11,7 @@ Run from the repository root with Python 3.11 or newer. The development checks m
 
 ```sh
 check_dir=$(mktemp -d)
+python3 tools/check_keywords.py keywords/public-boundary.txt .
 python3 -m venv "$check_dir/dev"
 "$check_dir/dev/bin/python" -m pip install -e '.[dev]'
 "$check_dir/dev/bin/ruff" check src tests
@@ -18,6 +19,9 @@ python3 -m venv "$check_dir/dev"
 "$check_dir/dev/bin/mypy"
 "$check_dir/dev/bin/pytest" -q
 ```
+
+The public keyword check runs offline with the checker and publishable wordlist
+vendored from `joseph-docs-public`. Keep the two files in sync with their public source.
 
 Build the wheel from the checkout and verify it in a separate, fresh environment.
 Run the import check outside the source tree.
